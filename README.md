@@ -2,6 +2,19 @@
 <h2>Système de régulation Ph/Orp (Chlore) Arduino Mega2560 (ou Controllino-Maxi) pour piscines domestiques</h2>
 Ce projet PoolMaster est basé sur celui de Loic74650 avec quelques modifications (https://github.com/Loic74650/PoolMaster)
 
+Améliorations:
+
+    Compteur d'eau
+    ESP32-Arduino framework, PlatformIO IDE
+    async MQTT client
+    JSON upgrade to version 6
+    lots of code modifications, keeping the general behaviour
+    add a fourth pump (cleaning robot)
+    manage only 2 relays (+ the four pumps)
+    analog measurements done by external ADC I2C module (ADS1115), in async mode
+    and more... 
+
+
 <br />
 <p align="center"> <img src="/docs/Plan arduino.png" width="802" title="Overview"> </p> <br /><br />
 
