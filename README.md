@@ -4,8 +4,6 @@
 <br />
 <p align="center"> <img src="/docs/Plan arduino.png" width="802" title="Overview"> </p> <br /><br />
 
-//<br />
-//<p align="center"> <img src="/docs/PoolMaster_2.jpg" width="802" title="Overview"> </p> <br /><br />
 
 <br />
 <p align="center"> <img src="/docs/Grafana.png" width="802" title="Dashboard"> </p> <br /><br />
