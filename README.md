@@ -1,5 +1,6 @@
 <h2>PoolMaster 5.0.0</h2>
 <h2>Arduino Mega2560 (or Controllino-Maxi) Ph/Orp (Chlorine) regulation system for home pools</h2>
+Ce projet PoolMaster est basé sur celui de Loic74650 avec quelques modifications (https://github.com/Loic74650/PoolMaster)
 
 <br />
 <p align="center"> <img src="/docs/Plan arduino.png" width="802" title="Overview"> </p> <br /><br />
