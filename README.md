@@ -21,7 +21,11 @@ Améliorations:
 
 
 <br />
-<p align="center"> <img src="/docs/Nextion.png" width="802" title="Nextion 3.5" touch screen"> </p> <br /><br />
+<p align="center"> <img src="/docs/Page1.png" width="802" title="Page1Nextion 3.5" touch screen"> </p> <br /><br />
+	
+
+<br />
+<p align="center"> <img src="/docs/Page2.png" width="802" title="Page2Nextion 3.5" touch screen"> </p> <br /><br />
 
 <h4>Brief description</h4>
 	
