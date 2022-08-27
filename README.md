@@ -19,8 +19,6 @@ Améliorations:
 <p align="center"> <img src="/docs/Plan arduino.png" width="802" title="Overview"> </p> <br /><br />
 
 
-<br />
-<p align="center"> <img src="/docs/Grafana.png" width="802" title="Dashboard"> </p> <br /><br />
 
 <br />
 <p align="center"> <img src="/docs/Nextion.png" width="802" title="Nextion 3.5" touch screen"> </p> <br /><br />
