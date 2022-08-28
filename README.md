@@ -2,17 +2,15 @@
 <h2>Système de régulation Ph/Orp (Chlore) Arduino Mega2560 (ou Controllino-Maxi) pour piscines domestiques</h2>
 Ce projet PoolMaster est basé sur celui de Loic74650 avec quelques modifications (https://github.com/Loic74650/PoolMaster)
 
-Améliorations:
+Améliorations: (En cours de dévellopement)
 
-    Compteur d'eau
-    ESP32-Arduino framework, PlatformIO IDE
-    async MQTT client
-    JSON upgrade to version 6
-    lots of code modifications, keeping the general behaviour
-    add a fourth pump (cleaning robot)
-    manage only 2 relays (+ the four pumps)
-    analog measurements done by external ADC I2C module (ADS1115), in async mode
-    and more... 
+    - Pesée des Bidons pour plus de précision
+    - Température Local et Exterieur
+    - Controle de la PAC via bus RS485 (POOLEX JetLine90)
+    - Relevé Conso PAC, Pompe Filtration et Eau
+    - Niveau d'eau Puit de décompression
+    
+    
 
 
 <br />
@@ -22,12 +20,20 @@ Améliorations:
 
 <br />
 <p align="center"> <img src="/docs/Page1.png" width="400" title="Page1Nextion 3.5" touch screen"> </p> <br /><br />
-	
-
 <br />
 <p align="center"> <img src="/docs/Page2.png" width="400" title="Page2Nextion 3.5" touch screen"> </p> <br /><br />
+<br />
+<p align="center"> <img src="/docs/Page3.png" width="400" title="Page3Nextion 3.5" touch screen"> </p> <br /><br />
+<br />
+<p align="center"> <img src="/docs/Page4.png" width="400" title="Page4Nextion 3.5" touch screen"> </p> <br /><br />
+<br />
+<p align="center"> <img src="/docs/Page5.png" width="400" title="Page5Nextion 3.5" touch screen"> </p> <br /><br />
+<br />
+<p align="center"> <img src="/docs/PageCalibrationBidon.png" width="400" title="PageCalibNextion 3.5" touch screen"> </p> <br /><br />
+<br />
+<p align="center"> <img src="/docs/PageCalibrationPH.png" width="400" title="PageCalibPHNextion 3.5" touch screen"> </p> <br /><br />
 
-<h4>Brief description</h4>
+<h4>Bref description</h4>
 	
 <p>Four main metrics are measured and periodically reported over MQTT and a 3.5" Nextion touch screen: water temperature and pressure, pH and ORP values.<br />
 Pumps states, tank-levels estimates and other parameters are also periodically reported<br />
