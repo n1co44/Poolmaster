@@ -118,9 +118,10 @@ c/ prefer platinium ORP probes for setpoints >500mV (ie. Pools and spas)<br />
 e/ the response time of ORP sensors can be fast in reference buffer solutions (10 secs) and yet very slow in pool water (minutes or more) as it depends on the water composition <br /><br />
 
 
-<p align="center"> <img src="/docs/Coffret.jpeg" width="702" title="Overview"> </p> <br /><br />
-<p align="center"> <img src="/docs/Coffret1.jpeg" width="702" title="Overview"> </p> <br /><br />
-<p align="center"> <img src="/docs/CarteInterface.jpeg" width="702" title="Overview"> </p> <br /><br />
+<p align="center"> <img src="/docs/Coffret.jpeg" width="500" title="Overview"> </p> <br /><br />
+<p align="center"> <img src="/docs/Coffret1.jpeg" width="500" title="Overview"> </p> <br /><br />
+<p align="center"> <img src="/docs/CarteInterface.jpeg" width="500" title="Overview"> </p> <br /><br />
+<p align="center"> <img src="/docs/PCB.png" width="500" title="Overview"> </p> <br /><br />
 <h4>MQTT API</h4>
 <p>
 Below are the Payloads/commands to publish on the "PoolTopicAPI" topic (see hardcoded in code) in Json format in order to launch actions on the Arduino:<br />
