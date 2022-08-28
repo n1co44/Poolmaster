@@ -9,7 +9,8 @@ Améliorations: (En cours de dévellopement)
     - Controle de la PAC via bus RS485 (POOLEX JetLine90)
     - Relevé Conso PAC, Pompe Filtration et Eau
     - Niveau d'eau Puit de décompression
-    
+    - Interface Nextion en Français
+       
     
 
 
