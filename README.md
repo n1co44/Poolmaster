@@ -121,7 +121,8 @@ e/ the response time of ORP sensors can be fast in reference buffer solutions (1
 <p align="center"> <img src="/docs/Coffret.jpeg" width="500" title="Overview"> </p> <br /><br />
 <p align="center"> <img src="/docs/Coffret1.jpeg" width="500" title="Overview"> </p> <br /><br />
 <p align="center"> <img src="/docs/CarteInterface.jpeg" width="500" title="Overview"> </p> <br /><br />
-<p align="center"> <img src="/docs/PCB.png" width="500" title="Overview"> </p> <br /><br />
+<p align="center"> <img src="/docs/pcb.png" width="500" title="Overview"> </p> <br /><br />
+
 <h4>MQTT API</h4>
 <p>
 Below are the Payloads/commands to publish on the "PoolTopicAPI" topic (see hardcoded in code) in Json format in order to launch actions on the Arduino:<br />
