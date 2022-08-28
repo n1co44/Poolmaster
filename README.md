@@ -5,7 +5,7 @@ Ce projet PoolMaster est basé sur celui de Loic74650 avec quelques modification
 Améliorations: (En cours de dévellopement)
 
     - Pesée des Bidons pour plus de précision
-    - Température Local et Exterieur
+    - Températures du Local et Exterieur
     - Controle de la PAC via bus RS485 (POOLEX JetLine90)
     - Relevé Conso PAC, Pompe Filtration et Eau
     - Niveau d'eau Puit de décompression
@@ -36,7 +36,7 @@ Améliorations: (En cours de dévellopement)
 
 <h4>Bref description</h4>
 	
-<p>Four main metrics are measured and periodically reported over MQTT and a 3.5" Nextion touch screen: water temperature and pressure, pH and ORP values.<br />
+<p>Quatre mesures principales sont mesurées et rapportées périodiquement sur MQTT et un écran tactile Nextion de 3,5" : température et pression de l'eau, valeurs de pH et d'ORP.<br />
 Pumps states, tank-levels estimates and other parameters are also periodically reported<br />
 Two PID regulation loops are running in parallel: one for PH, one for ORP<br />
 An additional simple (on/off) regulation loop is handling the water temperature (it starts/stops the house-heating system circulator which brings heat to a heat exchanger mounted on the pool water pipes)<br />
