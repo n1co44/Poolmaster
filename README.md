@@ -194,21 +194,4 @@ Below is a (quick and dirty) wiring diagram with the Controllino MAXI. Right cli
 <h4>Cloud integration example (<a title="https://blynk.io/" href="https://blynk.io/">BLYNK</a>)</h4>
 <p>
 See NodeRed folder for more info and code
-<p align="center"> <img src="/docs/Blynk2.jpg" width="302" title="Blynk"> </p> <br />
-<p align="center"> <img src="/NodeRed/NodeRed-to-Blynk.jpg" width="702" title="Blynk"> </p> <br />
-</p>
-
-<h4>Non-cloud home automation integration example (Node-Red + InfluxDB + Grafana)</h4>
-<p>
-See the NodeRed folder for more info and this <a title="https://www.youtube.com/watch?v=JdV4x925au0" href="https://www.youtube.com/watch?v=JdV4x925au0">tutorial</a> on how to create a Grafana dashboard from MQTT data.<br />
-<p align="center"> <img src="/docs/Grafana.png" width="702" title="Overview"> </p> <br />
-<p align="center"> <img src="/docs/NodeRedDashboard.png" width="702" title="Overview"> </p> <br />
-
-</p>
-
-<h4>Non-cloud home automation integration example (<a title="https://www.jeedom.com" href="https://www.jeedom.com">JEEDOM</a>)</h4>
-<p>
-<p align="center"> <img src="/docs/JeedomInterface.jpg" width="702" title="Overview"> </p> <br />
-<p align="center"> <img src="/docs/TuileJeedom.jpg" width="702" title="Overview"> </p> <br />
-<p align="center"> <img src="/docs/VirtuelJeedom.jpg" width="702" title="Overview"> </p> <br />
-</p>
+<p align="center"> <img src="/docs/BlynkPool.jpg" width="302" title="Blynk"> </p> <br />
