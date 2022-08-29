@@ -37,20 +37,21 @@ Améliorations: (En cours de dévellopement)
 <h4>Bref description</h4>
 	
 <p>Quatre mesures principales sont mesurées et rapportées périodiquement sur MQTT et un écran tactile Nextion de 3,5" : température et pression de l'eau, valeurs de pH et d'ORP.<br />
-Pumps states, tank-levels estimates and other parameters are also periodically reported<br />
-Two PID regulation loops are running in parallel: one for PH, one for ORP<br />
-An additional simple (on/off) regulation loop is handling the water temperature (it starts/stops the house-heating system circulator which brings heat to a heat exchanger mounted on the pool water pipes)<br />
-pH is regulated by injecting Acid from a tank into the pool water (a relay starts/stops the Acid peristaltic pump)<br />
-ORP is regulated by injecting Chlorine from a tank into the pool water (a relay starts/stops the Chlorine peristaltic pump)<br />
-Defined time-slots and water temperature are used to start/stop the filtration pump for a daily given amount of time (a relay starts/stops the filtration pump)<br />
-Tank-levels are estimated based on the running-time and flow-rate of each pump.<br />
-Ethernet connectivity parameters can be set through a webpage accessible from the LAN at http://PoolMaster.local.<br />
-If an ethernet connection is available, the internal clock (RTC) is synchronized with a time-server every day at midnight.<br />
+Les états des pompes, les estimations des niveaux des réservoirs et d'autres paramètres sont également signalés périodiquement<br />
+Deux boucles de régulation PID fonctionnent en parallèle : une pour le PH, une pour l'ORP<br />
+Une boucle de régulation supplémentaire simple (marche/arrêt) gère la température de l'eau (elle démarre/arrête le circulateur du système de chauffage domestique qui apporte de la chaleur à un échangeur de chaleur monté sur les conduites d'eau de la piscine)<br />
+Le pH est régulé en injectant de l'acide d'un réservoir dans l'eau de la piscine (un relais démarre/arrête la pompe péristaltique de l'acide)<br />
+L'ORP est régulé en injectant du Chlore d'un réservoir dans l'eau de la piscine (un relais démarre/arrête la pompe péristaltique de Chlore)<br />
+Des plages horaires et une température d'eau définies permettent de démarrer/arrêter la pompe de filtration pendant une durée quotidienne donnée (un relais démarre/arrête la pompe de filtration)<br />
+Les niveaux des réservoirs sont estimés en fonction du temps de fonctionnement et du débit de chaque pompe.<br />
+Les paramètres de connectivité Ethernet peuvent être définis via une page Web accessible depuis le réseau local à l'adresse http://PoolMaster.local.<br />
+Si une connexion Ethernet est disponible, l'horloge interne (RTC) est synchronisée avec un serveur de temps tous les jours à minuit.<br />
 
-An API function enables telling the system what the outside air temperature is. In case it is below -2.0°C, filtration is started until it rises back above +2.0°C<br />
-Communication with the system is performed using the MQTT protocol over an Ethernet connection to the local network/MQTT broker.<br /><br />
+Une fonction API permet d'indiquer au système la température de l'air extérieur. Dans le cas où elle est inférieure à -2,0°C, la filtration est démarrée jusqu'à ce qu'elle remonte au-dessus de +2,0°C<br />
+	
+La communication avec le système est effectuée à l'aide du protocole MQTT via une connexion Ethernet au réseau local/courtier MQTT.<br /><br />
 
-Every 30 seconds (by default), the system will publish on the "PoolTopicMeas1" and "PoolTopicMeas2"(see in code below) the following payloads in Json format:<br />
+Toutes les 30 secondes (par défaut), le système publiera sur les "PoolTopicMeas1" et "PoolTopicMeas2"(voir dans le code ci-dessous) les payloads suivants au format Json :<br />
   {"Tmp":818,"pH":321,"PSI":56,"Orp":583,"FilUpT":8995,"PhUpT":0,"ChlUpT":0}<br />
   {"AcidF":100,"ChlF":100,"IO":11,"IO2":0}<br />
   Tmp: measured Water temperature value in °C x100 (8.18°C in the above example payload)<br />
@@ -85,37 +86,37 @@ IO2: a variable of type BYTE where each individual bit is the state of a digital
 <li>R7: state of Relay7 (0=off, 1=on)</li>
 </ul><br />
 
-<h4>How to compile</h4>
+<h4>Comment compiler</h4>
 <p>
-- this code was developped for two main hardware configurations (see list in the hardware section below):<br /> 
+- ce code a été développé pour deux configurations matérielles principales (voir la liste dans la section matériel ci-dessous) mais avec les options supplementaires, il est préférable avec un Mega 2560:<br /> 
 <ul>
 <li>Controllino-Maxi or</li> 
 <li>Arduino Mega 2560 + Ethernet shield + relay shield + RTC module</li></ul>
-- select the target board type in the Arduino IDE (either "Arduino Mega 2560" or "Controllino Maxi") code should compile for both types<br />
+- sélectionnez le type de carte cible dans l'IDE Arduino (soit "Arduino Mega 2560" ou "Controllino Maxi") le code doit être compilé pour les deux types<br />
 
 
-<h4>Compatibility</h4>
+<h4>Compatibilité</h4>
 	
-<p>For this sketch to work on your setup you must change the following in the code (in the "Config.h" file):<br />
-- possibly the pinout definitions depending on your wiring<br />
-- the unique address of the DS18b20 water temperature sensor<br />
-- MAC and IP address of the Ethernet shield<br />
-- MQTT broker IP address and login credentials<br />
+<p>Pour que cette esquisse fonctionne sur votre configuration, vous devez modifier les éléments suivants dans le code (dans le fichier "Config.h") :<br />
+- éventuellement les définitions de brochage en fonction de votre câblage<br />
+- l'adresse unique des capteurs de température d'eau, local et exterieur DS18b20<br />
+- Adresse MAC et IP du shield Ethernet<br />
+- Adresse IP du courtier MQTT et identifiants de connexion<br />
 - possibly the topic names on the MQTT broker to subscribe and publish to<br />
-- the Kp,Ki,Kd parameters for both PID loops in case your peristaltic pumps have a different throughput than 1.5Liters/hour for the pH pump and 3.0Liters/hour for the Chlorine pump. Also the default Kp values were adjusted for a 50m3 pool volume. You might have to adjust the Kp values in case of a different pool volume and/or peristaltic pumps throughput (start by adjusting it proportionally). In any case these parameters are likely to require adjustments for every pool<br /></p>
+- les paramètres Kp, Ki, Kd pour les deux boucles PID au cas où vos pompes péristaltiques auraient un débit différent de 1,5 litre/heure pour la pompe pH et de 3,0 litres/heure pour la pompe chlore. De plus, les valeurs Kp par défaut ont été ajustées pour un volume de piscine de 50 m3. Vous devrez peut-être ajuster les valeurs de Kp en cas de volume de piscine et/ou de débit de pompes péristaltiques différents (commencez par l'ajuster proportionnellement). Dans tous les cas ces paramètres sont susceptibles de nécessiter des ajustements pour chaque piscine<br /></p>
 
-<h4>Tips</h4>
-Before attempting to regulate your pool water with this automated system, it is essential that you start with:<br />
-1- testing your water quality (using liquid kits and/or test strips for instance) and balancing it properly (pH, Chlorine, Alkalinity, Hardness). Proper water balancing will greatly ease the pH stability and regulation<br />
-2- calibrating the pH probe using calibrated buffer solutions (pay attention to the water temperature which plays a big role in pH readings)<br />
-3- adjusting pH to 7.4 <br />
-4- once above steps 1 to 3 are ok, you can start regulating ORP<br /><br />
+<h4>Astuces</h4>
+Avant de tenter de réguler l'eau de votre piscine avec cet automate, il est indispensable de commencer par :<br />
+1- Tester la qualité de votre eau (à l'aide de kits liquides et/ou de bandelettes de test par exemple) et l'équilibrer correctement (pH, Chlore, Alcalinité, Dureté). Un bon équilibrage de l'eau facilitera grandement la stabilité et la régulation du pH<br />
+2- Calibrer la sonde de pH à l'aide de solutions tampons calibrées (attention à la température de l'eau qui joue un grand rôle dans les mesures de pH)<br />
+3- Ajuster le pH à 7,4 <br />
+4- Une fois que les étapes 1 à 3 ci-dessus sont correctes, vous pouvez commencer à réguler l'ORP<br /><br />
  
 Notes:<br />
-a/ the ORP sensor should theoretically not be calibrated nore temperature compensated (by nature its 0mV pivot point cannot shift)<br />
-b/ the ORP reading is strongly affected by the pH value and the water temperature. Make sure pH is adjusted at 7.4<br />
-c/ prefer platinium ORP probes for setpoints >500mV (ie. Pools and spas)<br />
-e/ the response time of ORP sensors can be fast in reference buffer solutions (10 secs) and yet very slow in pool water (minutes or more) as it depends on the water composition <br /><br />
+a/ le capteur ORP ne doit théoriquement pas être calibré ni compensé en température (par nature, son point de pivot 0mV ne peut pas se déplacer)<br />
+b/ la lecture ORP est fortement affectée par la valeur du pH et la température de l'eau. Assurez-vous que le pH est ajusté à 7,4<br />
+c/ préférez les sondes ORP en platine pour les points de consigne> 500 mV (c'est-à-dire les piscines et les spas)<br />
+e/ le temps de réponse des capteurs ORP peut être rapide dans les solutions tampons de référence (10 secondes) et pourtant très lent dans l'eau de la piscine (minutes ou plus) car il dépend de la composition de l'eau <br /><br />
 
 
 <p align="center"> <img src="/docs/Coffret.jpeg" width="400" title="Overview"> </p> <br /><br />
@@ -125,7 +126,7 @@ e/ the response time of ORP sensors can be fast in reference buffer solutions (1
 
 <h4>MQTT API</h4>
 <p>
-Below are the Payloads/commands to publish on the "PoolTopicAPI" topic (see hardcoded in code) in Json format in order to launch actions on the Arduino:<br />
+Ci-dessous les Payloads/commandes à publier sur le topic "PoolTopicAPI" (voir codés en dur dans le code) au format Json afin de lancer des actions sur l'Arduino :<br />
 <ul>
 <li>{"Mode":1} or {"Mode":0}         -> set "Mode" to manual (0) or Auto (1). In Auto, filtration starts/stops at set times of the day and pH and Orp are regulated</li> 
 <li>{"Heat":1} or {"Heat":0}         -> start/stop the regulation of the pool water temperature</li>
@@ -168,20 +169,22 @@ Below are the Payloads/commands to publish on the "PoolTopicAPI" topic (see hard
 </p><br />
 
 
-<h4>Hardware</h4>
+<h4>Materiels</h4>
 <p>
 <ul>
-<li><a title="https://www.controllino.biz/product/controllino-maxi/" href="https://www.controllino.biz/product/controllino-maxi/">x1 CONTROLLINO MAXI (ATmega2560)</a> or Arduino Mega 2560 + Ethernet shield + relay shield + RTC module</li>
+<li><a title="https://fr.aliexpress.com/item/32864836449.html?spm=a2g0o.productlist.0.0.7e437288PyW6za&algo_pvid=439b0fe5-7cdc-46be-ab3f-49564465d3bf&algo_exp_id=439b0fe5-7cdc-46be-ab3f-49564465d3bf-0&pdp_ext_f=%7B%22sku_id%22%3A%2265815323341%22%7D&pdp_npi=2%40dis%21EUR%2113.54%2110.83%21%21%212.45%21%21%402100bdec16617690698694032e4c08%2165815323341%21sea&curPageLogUid=FT4ZhX6FH2za" href="https://fr.aliexpress.com/item/32864836449.html?spm=a2g0o.productlist.0.0.7e437288PyW6za&algo_pvid=439b0fe5-7cdc-46be-ab3f-49564465d3bf&algo_exp_id=439b0fe5-7cdc-46be-ab3f-49564465d3bf-0&pdp_ext_f=%7B%22sku_id%22%3A%2265815323341%22%7D&pdp_npi=2%40dis%21EUR%2113.54%2110.83%21%21%212.45%21%21%402100bdec16617690698694032e4c08%2165815323341%21sea&curPageLogUid=FT4ZhX6FH2za">x1 Arduino Mega 2560 + Ethernet shield + relay shield + RTC module</li>
 <li><a title="https://www.phidgets.com/?tier=3&catid=11&pcid=9&prodid=103" href="https://www.phidgets.com/?tier=3&catid=11&pcid=9&prodid=103">x2 Phidgets PH/ORB amplifier modules</a></li> 
 <li><a title="https://www.dfrobot.com/product-1621.html" href="https://www.dfrobot.com/product-1621.html">x2 Galvanic isolator for the pH and Orp probes</a></li> 
-<li><a title="https://www.trattamento-acque.net/dosaggio/pompe-peristaltiche/pompe-a-portata-fissa/pompa-serie-mp2-p-detail.html" href="https://www.trattamento-acque.net/dosaggio/pompe-peristaltiche/pompe-a-portata-fissa/pompa-serie-mp2-p-detail.html">x2 Peristaltic pumps, suction lances for tanks, pH and Orp probes</a></li>
+<li><a title="https://fr.aliexpress.com/item/32890406674.html?spm=a2g0o.order_list.0.0.31e55e5b4IVcHs&gatewayAdapt=glo2fra" href="https://fr.aliexpress.com/item/32890406674.html?spm=a2g0o.order_list.0.0.31e55e5b4IVcHs&gatewayAdapt=glo2fra">x2 pompes péristaltique de précision, pH et Orp</a></li>
 <li><a title="http://electrolyseur.fr/pool-terre.html" href="http://electrolyseur.fr/pool-terre.html">x1 Water grounding</a></li>
-<li><a title="http://electrolyseur.fr/kit-sonde-DS18B20-filtration-piscine.html" href="http://electrolyseur.fr/kit-sonde-DS18B20-filtration-piscine.html">x1 Water temperature probe (DS18B20)</a></li>
-<li><a title="https://fr.aliexpress.com/item/OOTDTY-G1-4-Pouces-5-v-0-0-5-MPa-Pression-Capteur-Capteur-D-huile-Carburant/32851667666.html?transAbTest=ae803_5&ws_ab_test=searchweb0_0%2Csearchweb201602_3_10065_10068_319_10892_317_10696_10084_453_454_10083_10618_10304_10307_10820_10821_537_10302_536_10902_10843_10059_10884_10887_321_322_10103%2Csearchweb201603_57%2CppcSwitch_0&algo_pvid=2456b33d-d7ee-4515-863d-af0c6b322395&algo_expid=2456b33d-d7ee-4515-863d-af0c6b322395-20
-" href="https://fr.aliexpress.com/item/OOTDTY-G1-4-Pouces-5-v-0-0-5-MPa-Pression-Capteur-Capteur-D-huile-Carburant/32851667666.html?transAbTest=ae803_5&ws_ab_test=searchweb0_0%2Csearchweb201602_3_10065_10068_319_10892_317_10696_10084_453_454_10083_10618_10304_10307_10820_10821_537_10302_536_10902_10843_10059_10884_10887_321_322_10103%2Csearchweb201603_57%2CppcSwitch_0&algo_pvid=2456b33d-d7ee-4515-863d-af0c6b322395&algo_expid=2456b33d-d7ee-4515-863d-af0c6b322395-20
-">x1 Pressure sensor</a></li>
+<li><a title="http://electrolyseur.fr/kit-sonde-DS18B20-filtration-piscine.html" href="http://electrolyseur.fr/kit-sonde-DS18B20-filtration-piscine.html">x3 Sondes de temperature (DS18B20)</a></li>
+<li><a title="https://fr.aliexpress.com/item/OOTDTY-G1-4-Pouces-5-v-0-0-5-MPa-Pression-Capteur-Capteur-D-huile-Carburant/32851667666.html?transAbTest=ae803_5&ws_ab_test=searchweb0_0%2Csearchweb201602_3_10065_10068_319_10892_317_10696_10084_453_454_10083_10618_10304_10307_10820_10821_537_10302_536_10902_10843_10059_10884_10887_321_322_10103%2Csearchweb201603_57%2CppcSwitch_0&algo_pvid=2456b33d-d7ee-4515-863d-af0c6b322395&algo_expid=2456b33d-d7ee-4515-863d-af0c6b322395-20" href="https://fr.aliexpress.com/item/OOTDTY-G1-4-Pouces-5-v-0-0-5-MPa-Pression-Capteur-Capteur-D-huile-Carburant/32851667666.html?transAbTest=ae803_5&ws_ab_test=searchweb0_0%2Csearchweb201602_3_10065_10068_319_10892_317_10696_10084_453_454_10083_10618_10304_10307_10820_10821_537_10302_536_10902_10843_10059_10884_10887_321_322_10103%2Csearchweb201603_57%2CppcSwitch_0&algo_pvid=2456b33d-d7ee-4515-863d-af0c6b322395&algo_expid=2456b33d-d7ee-4515-863d-af0c6b322395-20">x1 Capteur de Pression</a></li>
 <li><a title="https://www.itead.cc/nextion-nx4832k035.html" href="https://www.itead.cc/nextion-nx4832k035.html">x1 Nextion Enhanced NX4832K035 - Generic 3.5'' HMI Touch Display</a></li>
-
+<li><a title="https://fr.aliexpress.com/item/32715724000.html?spm=a2g0o.cart.0.0.202b378dusFRiW&mp=1&gatewayAdapt=glo2fra" href="https://fr.aliexpress.com/item/32715724000.html?spm=a2g0o.cart.0.0.202b378dusFRiW&mp=1&gatewayAdapt=glo2fra">x2 Capteur de Puissance
+<li><a title="https://fr.aliexpress.com/item/1005002176327047.html?spm=a2g0o.productlist.0.0.4fe0387cFCRlgk&algo_pvid=68d7faf7-f8a2-4ab9-9c62-e5154ad8a35b&algo_exp_id=68d7faf7-f8a2-4ab9-9c62-e5154ad8a35b-0&pdp_ext_f=%7B%22sku_id%22%3A%2212000018942928718%22%7D&pdp_npi=2%40dis%21EUR%212.29%211.71%21%21%212.74%21%21%402100bde316617694618363670ef938%2112000018942928718%21sea&curPageLogUid=Za8JRt8PFbMH" href="https://fr.aliexpress.com/item/1005002176327047.html?spm=a2g0o.productlist.0.0.4fe0387cFCRlgk&algo_pvid=68d7faf7-f8a2-4ab9-9c62-e5154ad8a35b&algo_exp_id=68d7faf7-f8a2-4ab9-9c62-e5154ad8a35b-0&pdp_ext_f=%7B%22sku_id%22%3A%2212000018942928718%22%7D&pdp_npi=2%40dis%21EUR%212.29%211.71%21%21%212.74%21%21%402100bde316617694618363670ef938%2112000018942928718%21sea&curPageLogUid=Za8JRt8PFbMH">x2 Cellules de charge
+<li><a title="https://fr.aliexpress.com/item/32566456466.html?spm=a2g0o.productlist.0.0.4db43822DJJd0l&algo_pvid=9683f5d0-5476-41df-8af5-6ed0fa830355&algo_exp_id=9683f5d0-5476-41df-8af5-6ed0fa830355-0&pdp_ext_f=%7B%22sku_id%22%3A%2258373183866%22%7D&pdp_npi=2%40dis%21EUR%210.47%210.38%21%21%21%21%21%402100bddb16617698476563893e6310%2158373183866%21sea&curPageLogUid=VYbIYbAi0ne9" href="https://fr.aliexpress.com/item/32566456466.html?spm=a2g0o.productlist.0.0.4db43822DJJd0l&algo_pvid=9683f5d0-5476-41df-8af5-6ed0fa830355&algo_exp_id=9683f5d0-5476-41df-8af5-6ed0fa830355-0&pdp_ext_f=%7B%22sku_id%22%3A%2258373183866%22%7D&pdp_npi=2%40dis%21EUR%210.47%210.38%21%21%21%21%21%402100bddb16617698476563893e6310%2158373183866%21sea&curPageLogUid=VYbIYbAi0ne9">x1 Carte de Module de convertisseur MAX485 TTL
+<li><a title="http://" href="http://">x1 PCB by Nico
+	
 </ul>
 </p><br />
 
