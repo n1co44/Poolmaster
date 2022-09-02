@@ -4,10 +4,11 @@ Ce projet PoolMaster est basé sur celui de Loic74650 avec quelques modification
 
 Améliorations: (En cours de dévellopement)
 
-    - Pesée des Bidons pour plus de précision
+    - Pesée des Bidons pour plus de précision (Balance Bidon Chlore et PH)
     - Températures du Local et Exterieur
     - Controle de la PAC via bus RS485 (POOLEX JetLine90)
-    - Relevé Conso PAC, Pompe Filtration, Pompe de relevage et Eau
+    - Relevé Conso PAC, Pompe Filtration, Pompe de relevage
+    - Relevé Conso Eau
     - Niveau d'eau Puit de décompression
     - Interface Nextion en Français
        
