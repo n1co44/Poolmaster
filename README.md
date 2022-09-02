@@ -7,7 +7,7 @@ Améliorations: (En cours de dévellopement)
     - Pesée des Bidons pour plus de précision
     - Températures du Local et Exterieur
     - Controle de la PAC via bus RS485 (POOLEX JetLine90)
-    - Relevé Conso PAC, Pompe Filtration et Eau
+    - Relevé Conso PAC, Pompe Filtration, Pompe de relevage et Eau
     - Niveau d'eau Puit de décompression
     - Interface Nextion en Français
        
