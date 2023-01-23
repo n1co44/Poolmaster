@@ -123,7 +123,8 @@ e/ le temps de réponse des capteurs ORP peut être rapide dans les solutions ta
 <p align="center"> <img src="/docs/Coffret.jpeg" width="400" title="Overview"> </p> <br /><br />
 <p align="center"> <img src="/docs/Coffret1.jpeg" width="400" title="Overview"> </p> <br /><br />
 <p align="center"> <img src="/docs/CarteInterface.jpeg" width="400" title="Overview"> </p> <br /><br />
-<p align="center"> <img src="/docs/pcb.png" width="300" title="Overview"> </p> <br /><br />
+<p align="center"> <img src="/docs/pcb.png" width="300" title="Overview"> <img src="/docs/PCBV2.png" width="300" title="Overview"></p> <br /><br />
+
 
 <h4>MQTT API</h4>
 <p>
